@@ -75,7 +75,7 @@ Me chamo Sergio Christofoli Pereira, tenho 25 anos e sou natural de Santa Catari
     alt="GitHub Stats" 
     height="200" 
     style="padding-right: 10px;" 
-    src="https://github-stats-extended.vercel.app/api?username=Serg0-Proxy&show_icons=true&theme=tokyonight&include_all_commits=true&locale=pt-br&refresh=1" 
+    src="https://github-stats-extended.vercel.app/api?username=Serg0-Proxy&show_icons=true&theme=tokyonight&include_all_commits=true&locale=pt-br&refresh=2" 
   />
 
 <img 
