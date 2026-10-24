@@ -1,0 +1,31 @@
+name: Atualizar estatísticas do perfil
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # a cada 6 horas
+  workflow_dispatch:         # permite rodar manualmente
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Baixar cards
+        run: |
+          mkdir -p stats
+          curl -sL "https://github-stats-extended.vercel.app/api?username=Serg0-Proxy&show_icons=true&theme=tokyonight&include_all_commits=true&locale=pt-br" \
+            -o stats/github-stats.svg
+          curl -sL "https://github-stats-extended.vercel.app/api/top-langs/?username=Serg0-Proxy&theme=tokyonight&layout=compact&custom_title=Tecnologias&langs_count=9" \
+            -o stats/top-langs.svg
+
+      - name: Commit se houver mudança
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add stats/
+          git diff --staged --quiet || git commit -m "chore: atualiza estatísticas do perfil"
+          git push
